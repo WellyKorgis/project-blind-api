@@ -23,7 +23,7 @@ jobs:
         if [ ${{ github.event_name }} = 'pull_request' ]; then
             echo "MESSAGE='PR {{ EVENT_PAYLOAD.pull_request.title}} is created by {{ EVENT_PAYLOAD.pull_request.sender.login}}'" >> $GITHUB_ENV
         else
-            echo "MESSAGE='{{ EVENT_PAYLOAD.push.ref }} has been pushed by {{ EVENT_PAYLOAD.push.pusher.name }}'" >> $GITHUB_ENV
+            echo "MESSAGE='{{ EVENT_PAYLOAD.push.head_commit.message }} has been pushed by {{ EVENT_PAYLOAD.push.pusher.name }}'" >> $GITHUB_ENV
         fi
     
     - name: Discord Message Notify
