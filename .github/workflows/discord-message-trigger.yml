@@ -21,9 +21,9 @@ jobs:
     - name: Write Message
       run: |
         if [ ${{ github.event_name }} = 'pull_request' ]; then
-            MESSAGE="PR ${{ github.event.pull_request.title}} is created by ${{github.event.pull_request.sender.login}}"
+            echo "MESSAGE='PR ${{ github.event.pull_request.title}} is created by ${{github.event.pull_request.sender.login}}'" >> $GITHUB_ENV
         else
-            MESSAGE="${{github.event.push.ref}} has been pushed by${{github.event.push.pusher.name}}"
+            echo "MESSAGE='${{github.event.push.ref}} has been pushed by${{github.event.push.pusher.name}}'" >> $GITHUB_ENV
         fi
     
     - name: Discord Message Notify
@@ -31,4 +31,4 @@ jobs:
         DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
       uses: Ilshidur/action-discord@master
       with:
-        args: "${MESSAGE}"
+        args: env.MESSAGE
