@@ -18,12 +18,17 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    - name: Test
+      run: echo $GITHUB_CONTEXT
+      env:
+        GITHUB_CONTEXT: ${{toJson(github}}
+
     - name: Write Message
       run: |
         if [ ${{ github.event_name }} = 'pull_request' ]; then
-            echo "MESSAGE='PR {{ github.event.pull_request.title }} is created by {{ github.event.pull_request.sender.login }}'" >> $GITHUB_ENV
+            echo "MESSAGE='PR ${{ github.event.pull_request.title }} is created by ${{ github.event.pull_request.sender.login }}. Here is the link: ${{github.event.pull_request._links.html.href}}'" >> $GITHUB_ENV
         else
-            echo "MESSAGE='{{ github.event.push.head_commit.message }} has been pushed by {{ github.event.push.sender.login }}'" >> $GITHUB_ENV
+            echo "MESSAGE='${{ github.event.push.head_commit.message }} has been pushed by ${{ github.event.push.sender.login }}'" >> $GITHUB_ENV
         fi
     
     - name: Discord Message Notify
