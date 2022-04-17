@@ -10,8 +10,7 @@ services:
       - POSTGRES_DB=blind-db
     ports:
       - '5432:5432'
-#    volumes:
-#      - resource/db:/var/lib/postgresql/data
+
   app:
     container_name: blind-api
     build:
@@ -28,6 +27,3 @@ services:
       - DATABASE_PORT=5432
     depends_on:
       - db
-#volumes:
-#  db:
-#    driver: local
