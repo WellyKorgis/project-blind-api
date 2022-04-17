@@ -9,7 +9,6 @@ import java.util.UUID;
 @MappedSuperclass
 public class BaseEntity {
     @Id
-
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Column(unique = true, nullable = false, columnDefinition = "uuid")
