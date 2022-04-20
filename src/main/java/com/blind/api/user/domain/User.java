@@ -1,5 +1,6 @@
 package com.blind.api.user.domain;
 
+import com.blind.api.company.domain.Company;
 import com.blind.common.domain.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,12 +8,8 @@ import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.OffsetDateTime;
-import java.util.UUID;
 
 @Entity
 @Getter
@@ -27,10 +24,10 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private String email;
 
-    //TODO: Put it back when company, job position is added
-//    @Column(name = "company_id")
-//    private UUID companyId;
-//
+    @JoinColumn(name = "company_id", referencedColumnName = "id", nullable = false)
+    @ManyToOne
+    private Company company;
+
 //    @Column(name = "job_position_id")
 //    private UUID jobPositionId;
 
