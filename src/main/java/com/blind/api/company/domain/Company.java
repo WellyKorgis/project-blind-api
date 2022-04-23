@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "companies")
 public class Company extends BaseEntity {
     @Column(nullable=false)
     private String name;
