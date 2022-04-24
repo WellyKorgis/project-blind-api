@@ -1,6 +1,6 @@
-package com.blind.api.user.domain;
+package com.blind.api.post.domain;
 
-import com.blind.api.job.domain.JobPosition;
+import com.blind.api.user.domain.User;
 import com.blind.common.domain.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,22 +16,18 @@ import java.time.OffsetDateTime;
 @Setter
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "users")
-public class User extends BaseEntity {
+@Table(name = "posts")
+public class Post extends BaseEntity {
     @Column(nullable = false)
-    private String username;
-
+    private String title;
     @Column(nullable = false)
-    private String email;
-  
-    @JoinColumn(name = "job_position_id", referencedColumnName = "id")
-    @ManyToOne
-    private JobPosition jobPosition;
-
+    private String content;
     @CreatedDate
     @Column(name = "created_at", nullable = false)
     private OffsetDateTime createAt;
-
-    @Column(name = "is_activated", nullable = false)
-    private boolean isActivated;
+    @JoinColumn(nullable = false)
+    @ManyToOne
+    private User user;
+    @Column(name = "updated_at", nullable = false)
+    private OffsetDateTime updatedAt;
 }
