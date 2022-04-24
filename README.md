@@ -8,7 +8,12 @@
 You can find the summary of development guideline [here](https://www.notion.so/6bffc223cf6c4b64aa6329fb9fc3f4d9#9161ed334bc041eb8b99cbc540e25ff9)
 
 ## :whale: How to set up Docker
-(TBC)
+Build the images in the docker-compose. yml file
+`docker-compose build`
+Spin up the docker containers and aggregate them
+`docker-compose up`
+Stops containers and removes containers, networks, volumes, and images created by up
+`docker-compose down`
 
 ## :airplane: How to run tests
 (TBC)
