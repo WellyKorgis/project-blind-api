@@ -16,7 +16,6 @@ import javax.persistence.Table;
 @Setter
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "post_category")
 public class PostCategory extends BaseEntity {
     @Column(nullable = false)
     private String name;
