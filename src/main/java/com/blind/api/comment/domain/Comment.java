@@ -16,7 +16,7 @@ import java.time.OffsetDateTime;
 @Setter
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "comments")
+@Table(name = "comment")
 public class Comment extends BaseEntity {
     @Column(nullable = false)
     private String content;
