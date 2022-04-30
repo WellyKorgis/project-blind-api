@@ -16,18 +16,22 @@ import java.time.OffsetDateTime;
 @Setter
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "posts")
+@Table(name = "post")
 public class Post extends BaseEntity {
     @Column(nullable = false)
     private String title;
+
     @Column(nullable = false)
     private String content;
+
     @CreatedDate
     @Column(name = "created_at", nullable = false)
     private OffsetDateTime createAt;
-    @JoinColumn(nullable = false)
+
+    @JoinColumn(name="user_id",referencedColumnName = "id", nullable = false)
     @ManyToOne
-    private User user;
+    private User userId;
+
     @Column(name = "updated_at", nullable = false)
     private OffsetDateTime updatedAt;
 }
