@@ -1,6 +1,7 @@
 package com.blind.api.user.domain;
 
 import com.blind.api.job.domain.JobPosition;
+import com.blind.api.company.domain.Company;
 import com.blind.common.domain.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +28,10 @@ public class User extends BaseEntity {
     @JoinColumn(name = "job_position_id", referencedColumnName = "id")
     @ManyToOne
     private JobPosition jobPosition;
+
+    @JoinColumn(name = "company_id", referencedColumnName = "id", nullable = false)
+    @ManyToOne
+    private Company company;
 
     @CreatedDate
     @Column(name = "created_at", nullable = false)
