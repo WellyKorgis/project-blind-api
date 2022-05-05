@@ -17,7 +17,6 @@ import java.time.OffsetDateTime;
 @Setter
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "bookmark")
 public class Bookmark extends BaseEntity {
     @JoinColumn(name = "post_id", referencedColumnName = "id")
     @ManyToOne
