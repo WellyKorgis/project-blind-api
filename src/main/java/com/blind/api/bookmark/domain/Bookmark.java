@@ -1,5 +1,6 @@
-package com.blind.api.post.domain;
+package com.blind.api.bookmark.domain;
 
+import com.blind.api.post.domain.Post;
 import com.blind.api.user.domain.User;
 import com.blind.common.domain.BaseEntity;
 import lombok.Getter;
@@ -16,17 +17,16 @@ import java.time.OffsetDateTime;
 @Setter
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Post extends BaseEntity {
-    @Column(nullable = false)
-    private String title;
-    @Column(nullable = false)
-    private String content;
+public class Bookmark extends BaseEntity {
+    @JoinColumn(name = "post_id", referencedColumnName = "id")
+    @ManyToOne
+    private Post postId;
+
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne
+    private User userID;
+
     @CreatedDate
     @Column(name = "created_at", nullable = false)
     private OffsetDateTime createAt;
-    @JoinColumn(nullable = false)
-    @ManyToOne
-    private User user;
-    @Column(name = "updated_at", nullable = false)
-    private OffsetDateTime updatedAt;
 }
