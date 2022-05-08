@@ -1,8 +1,6 @@
-package com.blind.api.comment.domain;
-
-import com.blind.api.post.domain.Post;
-import com.blind.api.user.domain.User;
-import com.blind.common.domain.BaseEntity;
+package com.blind.post.domain;
+import com.blind.account.domain.Account;
+import com.blind.shared.domain.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,7 +33,7 @@ public class Comment extends BaseEntity {
 
     @JoinColumn(nullable = false)
     @ManyToOne
-    private User user;
+    private Account account;
 
     @JoinColumn(nullable = false)
     @ManyToOne

@@ -1,6 +1,6 @@
 package com.blind.company.persistence.respository;
 
-import com.blind.company.domain.Entity.Company;
+import com.blind.company.domain.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

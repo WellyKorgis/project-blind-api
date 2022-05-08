@@ -1,6 +1,6 @@
 package com.blind.post.persistence.repository;
 
-import com.blind.post.domain.Entity.Post;
+import com.blind.post.domain.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
-package com.blind.api.comment.repository;
+package com.blind.post.persistence.repository;
 
-import com.blind.api.comment.domain.Comment;
+import com.blind.post.domain.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

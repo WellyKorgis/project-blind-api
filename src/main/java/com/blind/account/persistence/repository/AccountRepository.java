@@ -1,6 +1,6 @@
 package com.blind.account.persistence.repository;
 
-import com.blind.account.domain.Entity.Account;
+import com.blind.account.domain.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

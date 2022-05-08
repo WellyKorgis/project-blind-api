@@ -1,6 +1,6 @@
-package com.blind.company.domain.Entity;
+package com.blind.company.domain;
 
-import com.blind.common.domain.BaseEntity;
+import com.blind.shared.domain.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;

@@ -1,4 +1,4 @@
-package com.blind.common.domain;
+package com.blind.shared.domain;
 
 import org.hibernate.annotations.GenericGenerator;
 

@@ -1,8 +1,8 @@
-package com.blind.account.domain.Entity;
+package com.blind.account.domain;
 
-import com.blind.company.domain.Entity.JobPosition;
-import com.blind.company.domain.Entity.Company;
-import com.blind.common.domain.BaseEntity;
+import com.blind.company.domain.JobPosition;
+import com.blind.company.domain.Company;
+import com.blind.shared.domain.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
