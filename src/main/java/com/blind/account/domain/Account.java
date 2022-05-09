@@ -2,6 +2,7 @@ package com.blind.account.domain;
 
 import com.blind.company.domain.JobPosition;
 import com.blind.company.domain.Company;
+import com.blind.post.domain.Bookmark;
 import com.blind.shared.domain.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -38,4 +40,7 @@ public class Account extends BaseEntity {
 
     @Column(name = "is_activated", nullable = false)
     private boolean isActivated;
+
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Bookmark> bookmarks;
 }
