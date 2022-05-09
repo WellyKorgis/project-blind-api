@@ -19,9 +19,9 @@ import java.time.OffsetDateTime;
 public class Bookmark extends BaseEntity {
     @JoinColumn(name = "post_id", referencedColumnName = "id")
     @ManyToOne
-    private Post postId;
+    private Post post;
 
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
     @ManyToOne
     private Account account;
 
