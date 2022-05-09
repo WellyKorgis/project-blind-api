@@ -8,11 +8,6 @@ if (diffSize > 300 ) {
     isGood = false;
 }
 
-if (danger.github.pr.changed_files > 10 ) {
-    warn("This PR changes too many files. You should divide this PR into smaller PRs.");
-    isGood = false;
-}
-
 for (const commit of danger.github.commits) {
     if (commit.commit.message.length < 5) {
         warn("There is a commit with very short message: " +  commit.commit.message)
