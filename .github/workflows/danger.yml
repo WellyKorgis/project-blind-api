@@ -8,13 +8,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Set up Node.js 16
-    - uses: actions/setup-node@v3
+      uses: actions/setup-node@v3
       with:
         node-version: 16
         cache: 'npm'
     - run: npm i -g npm
     - run: npm ci
-    - name: Run Danger JS
-      run: npx danger ci
+    - run: npx danger ci
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
