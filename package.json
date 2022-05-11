@@ -1,0 +1,26 @@
+{
+  "name": "project-blind-api",
+  "version": "1.0.0",
+  "description": "- Git\r - VS Code, IntelliJ (as preferred)\r - Java SDK\r - Docker desktop\r - NodeJS \r # :wrench: Development\r You can find the summary of development guideline [here](https://www.notion.so/6bffc223cf6c4b64aa6329fb9fc3f4d9#9161ed334bc041eb8b99cbc540e25ff9)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WellyKorgis/project-blind-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WellyKorgis/project-blind-api/issues"
+  },
+  "homepage": "https://github.com/WellyKorgis/project-blind-api#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.31",
+    "danger": "^11.0.5",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {}
+}
