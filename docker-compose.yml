@@ -14,7 +14,7 @@ services:
   app:
     container_name: blind-api
     build:
-      context: .
+      context: server
       dockerfile: Dockerfile
     ports:
       - '8080:8080'
