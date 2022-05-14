@@ -43,4 +43,9 @@ public class Account extends BaseEntity {
 
     @OneToMany(mappedBy = "account", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Bookmark> bookmarks;
+
+    public Account(String username, String email) {
+        this.username = username;
+        this.email = email;
+    }
 }

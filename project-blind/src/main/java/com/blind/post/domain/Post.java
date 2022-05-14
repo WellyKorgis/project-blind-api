@@ -37,4 +37,10 @@ public class Post extends BaseEntity {
 
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Bookmark> bookmarks;
+
+    public Post(String title, String content, Account account) {
+        this.title = title;
+        this.content = content;
+        this.account = account;
+    }
 }
