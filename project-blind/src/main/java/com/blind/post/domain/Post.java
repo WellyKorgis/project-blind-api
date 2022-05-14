@@ -10,6 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.OffsetDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -37,6 +38,10 @@ public class Post extends BaseEntity {
 
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Bookmark> bookmarks;
+    public void add(Bookmark bookmark) {
+        bookmark.setPost(this);
+        getBookmarks().add(bookmark);
+    }
 
     public Post(String title, String content, Account account) {
         this.title = title;
