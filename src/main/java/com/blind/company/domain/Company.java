@@ -1,15 +1,16 @@
 package com.blind.company.domain;
 
 import com.blind.shared.domain.BaseEntity;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Company extends BaseEntity {
     @Column(nullable=false)
