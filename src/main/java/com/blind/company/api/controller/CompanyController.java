@@ -1,7 +1,30 @@
 package com.blind.company.api.controller;
 
-import org.springframework.web.bind.annotation.RestController;
+import com.blind.company.api.dto.response.CompanyResponse;
+import com.blind.company.api.service.CompanyService;
+import com.blind.shared.api.BaseDtoResponse;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
+@Slf4j
 @RestController
+@CrossOrigin("*")
+@RequiredArgsConstructor
+@RequestMapping("/api/company")
 public class CompanyController {
+    private final CompanyService companyService;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<? extends BaseDtoResponse> getCompanyById(@RequestParam UUID id)
+    {
+        CompanyResponse getCompanyResponse = companyService.getCompany(id);
+
+        if(getCompanyResponse != null) ResponseEntity.status(HttpStatus.OK).body(getCompanyResponse);
+        return ResponseEntity .status(HttpStatus.NOT_FOUND).body(BaseDtoResponse.of(HttpStatus.NO_CONTENT.value(), "Couldn't retrieve company information"));
+    }
 }

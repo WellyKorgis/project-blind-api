@@ -11,8 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class GetCompanyResponse {
+public class CompanyCategoryResponse {
     private UUID id;
     private String name;
-    private String companyCategory;
 }
