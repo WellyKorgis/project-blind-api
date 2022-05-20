@@ -1,9 +1,9 @@
 package com.blind.company.api.service;
 
-import com.blind.company.api.dto.response.GetCompanyResponse;
+import com.blind.company.api.dto.response.CompanyResponse;
 
 import java.util.UUID;
 
 public interface CompanyService {
-    GetCompanyResponse getCompany(UUID id);
+    CompanyResponse getCompany(UUID id);
 }

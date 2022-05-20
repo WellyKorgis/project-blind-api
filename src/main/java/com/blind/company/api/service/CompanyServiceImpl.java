@@ -1,6 +1,6 @@
 package com.blind.company.api.service;
 
-import com.blind.company.api.dto.response.GetCompanyResponse;
+import com.blind.company.api.dto.response.CompanyResponse;
 import com.blind.company.api.mapper.CompanyMapper;
 import com.blind.company.domain.Company;
 import com.blind.company.persistence.respository.CompanyRepository;
@@ -19,7 +19,7 @@ public class CompanyServiceImpl implements CompanyService {
     private final CompanyMapper companyMapper;
 
     @Override
-    public GetCompanyResponse getCompany(UUID id) {
+    public CompanyResponse getCompany(UUID id) {
         Company company = companyRepository.findById(id).orElse(null);
 
         if (company == null) return null;
