@@ -10,11 +10,6 @@ public class PostController {
         this.postRepository = postRepository;
     }
 
-    @GetMapping("/")
-    String hi() {
-        return "hi";
-    }
-
     @GetMapping("/posts")
     List<Post> listAll() {
         return postRepository.findAll();
