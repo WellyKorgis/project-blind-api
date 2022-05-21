@@ -1,24 +1,34 @@
 package com.blind.api.mapping;
 
-import com.blind.company.api.dto.response.GetCompanyResponse;
+import com.blind.company.api.dto.response.CompanyResponse;
 import com.blind.company.api.mapper.CompanyMapper;
 import com.blind.company.domain.Company;
 import com.blind.company.domain.CompanyCategory;
 import org.junit.jupiter.api.Test;
+
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class MappingTests {
     @Test
-    public void shouldMapCompanyToDto()
+    public void shouldMapCompanyToDto() throws Exception
     {
-        Company company = new Company("company name", new CompanyCategory("category"));
+        CompanyCategory companyCategory = new CompanyCategory();
+        Company company = new Company();
 
-        GetCompanyResponse companyDto = CompanyMapper.INSTANCE.companyToGetCompanyResponse(company);
+        companyCategory.setId(UUID.randomUUID());
+        companyCategory.setName("CompanyCategory");
+
+        company.setId(UUID.randomUUID());
+        company.setName("Company");
+        company.setCompanyCategory(companyCategory);
+
+        CompanyResponse companyDto = CompanyMapper.INSTANCE.companyToDto(company);
 
         assertNotNull(companyDto);
         assertEquals(companyDto.getName(), company.getName());
-        assertEquals(companyDto.getCompanyCategory(), company.getCompanyCategory().getName());
+        assertEquals(companyDto.getCompanyCategory().getName(), company.getCompanyCategory().getName());
     }
 }

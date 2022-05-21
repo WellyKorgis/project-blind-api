@@ -24,6 +24,6 @@ public class CompanyServiceImpl implements CompanyService {
 
         if (company == null) return null;
 
-        return companyMapper.INSTANCE.companyToGetCompanyResponse(company);
+        return companyMapper.INSTANCE.companyToDto(company);
     }
 }
