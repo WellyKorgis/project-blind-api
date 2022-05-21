@@ -24,7 +24,7 @@ public class CompanyController {
     {
         CompanyResponse getCompanyResponse = companyService.getCompany(id);
 
-        if(getCompanyResponse != null) ResponseEntity.status(HttpStatus.OK).body(getCompanyResponse);
-        return ResponseEntity .status(HttpStatus.NOT_FOUND).body(BaseDtoResponse.of(HttpStatus.NO_CONTENT.value(), "Couldn't retrieve company information"));
+        if(getCompanyResponse != null) return ResponseEntity.status(HttpStatus.OK).body(getCompanyResponse);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(BaseDtoResponse.of(HttpStatus.NO_CONTENT.value(), "Couldn't retrieve company information"));
     }
 }

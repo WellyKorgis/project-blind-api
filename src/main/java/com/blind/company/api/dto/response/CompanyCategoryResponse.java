@@ -1,17 +1,15 @@
 package com.blind.company.api.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.blind.shared.api.BaseDtoResponse;
+import lombok.*;
 
 import java.util.UUID;
 
-@Data
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CompanyCategoryResponse {
+public class CompanyCategoryResponse extends BaseDtoResponse {
     private UUID id;
     private String name;
 }
