@@ -25,7 +25,6 @@ import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
 public class CompanyControllerTests {
-
     @Mock
     private CompanyService companyService;
 
@@ -44,7 +43,7 @@ public class CompanyControllerTests {
         companyCategory.setName("CompanyCategory");
 
         company.setId(UUID.randomUUID());
-        company.setName("Compnay");
+        company.setName("Company");
         company.setCompanyCategory(companyCategory);
 
         final CompanyResponse companyDto = companyMapper.INSTANCE.companyToDto(company);

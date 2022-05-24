@@ -5,13 +5,20 @@ import com.blind.company.api.mapper.CompanyMapper;
 import com.blind.company.domain.Company;
 import com.blind.company.domain.CompanyCategory;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@ExtendWith(MockitoExtension.class)
 public class MappingTests {
+    @Mock
+    private CompanyMapper companyMapper;
+
     @Test
     public void shouldMapCompanyToDto() throws Exception
     {
@@ -25,7 +32,7 @@ public class MappingTests {
         company.setName("Company");
         company.setCompanyCategory(companyCategory);
 
-        CompanyResponse companyDto = CompanyMapper.INSTANCE.companyToDto(company);
+        CompanyResponse companyDto = companyMapper.INSTANCE.companyToDto(company);
 
         assertNotNull(companyDto);
         assertEquals(companyDto.getName(), company.getName());
