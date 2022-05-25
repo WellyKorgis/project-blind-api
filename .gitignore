@@ -61,9 +61,6 @@ fabric.properties
 
 *.class
 browscap.csv
-gradle/wrapper
-gradlew.bat
-gradlew
 
 # Package Files #
 *.jar
@@ -137,7 +134,12 @@ gradle-app.setting
 
 # Cache of project
 .gradletasknamecache
-gradle/
+
+#Build
 build/
+
+# NodeJS
 node_modules/
+
+# VS Code
 .history/
