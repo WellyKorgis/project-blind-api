@@ -2,6 +2,9 @@ logging:
   level:
     com: info
 
+server:
+  port: 8081
+
 spring:
   # Database information
   datasource:
