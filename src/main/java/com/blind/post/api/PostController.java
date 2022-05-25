@@ -21,11 +21,21 @@ public class PostController {
         this.postRepository = postRepository;
     }
 
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "NOT_FOUND"),
+            @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
+    })
     @GetMapping("/")
     List<Post> listAll() {
         return postRepository.findAll();
     }
 
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 400, message = "BAD_REQUEST"),
+            @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
+    })
     @PostMapping("/")
     Post createPost(@RequestBody Post post) {
         postRepository.save(post);
