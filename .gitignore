@@ -65,6 +65,7 @@ gradlew.bat
 gradlew
 
 # Package Files #
+*.jar
 *.war
 *.ear
 *.db
