@@ -1,3 +1,5 @@
+[![Java CI with Gradle](https://github.com/WellyKorgis/project-blind-api/actions/workflows/gradle.yml/badge.svg)](https://github.com/WellyKorgis/project-blind-api/actions/workflows/gradle.yml)
+
 # :loudspeaker: Pre-requisites
 - Git
 - VS Code, IntelliJ (as preferred)
@@ -19,6 +21,8 @@ Stops containers and removes containers, networks, volumes, and images created b
 (TBC)
 
 # :gem: Style Guide
+## Linting
+(TBC)
 
 ## :closed_book: How to do Code Review
 - Always create a PR before you merge into `dev` or `main` branch. :rotating_light:**No direct merge into `main`!**. Currently we cannot force branch policy as it's a paid feature for Github Organisation. So beware!
