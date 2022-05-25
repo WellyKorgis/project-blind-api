@@ -61,8 +61,6 @@ fabric.properties
 
 *.class
 browscap.csv
-gradlew.bat
-gradlew
 
 # Package Files #
 *.jar
