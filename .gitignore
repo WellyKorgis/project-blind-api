@@ -137,7 +137,12 @@ gradle-app.setting
 
 # Cache of project
 .gradletasknamecache
-gradle/
+
+#Build
 build/
+
+# NodeJS
 node_modules/
+
+# VS Code
 .history/
