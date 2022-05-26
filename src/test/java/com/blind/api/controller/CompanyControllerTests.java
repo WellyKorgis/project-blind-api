@@ -6,33 +6,35 @@ import com.blind.company.api.mapper.CompanyMapper;
 import com.blind.company.api.service.CompanyService;
 import com.blind.company.domain.Company;
 import com.blind.company.domain.CompanyCategory;
-import com.blind.shared.api.BaseDtoResponse;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@WebMvcTest(controllers = CompanyController.class)
 @ExtendWith(MockitoExtension.class)
 public class CompanyControllerTests {
-    @Mock
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
     private CompanyService companyService;
 
     @Mock
     private CompanyMapper companyMapper;
-
-    @InjectMocks
-    private CompanyController companyController;
 
     @Test
     public void getCompany() throws Exception {
@@ -50,15 +52,10 @@ public class CompanyControllerTests {
 
         given(companyService.getCompany(company.getId())).willReturn(companyDto);
 
-        ResponseEntity<? extends BaseDtoResponse> response = companyController.getCompanyById(company.getId());
+        this.mockMvc.perform(get("/company/{id}", company.getId()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is(company.getName())));
 
-        ObjectMapper mapper = new ObjectMapper();
-        var responseToGetCompanyResponse = mapper.convertValue(response.getBody(), CompanyResponse.class);
-
-        assertNotNull(response);
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(companyDto.getName(), responseToGetCompanyResponse.getName());
-
-        verify(companyService).getCompany(companyDto.getId());
+        verify(companyService).getCompany(company.getId());
     }
 }

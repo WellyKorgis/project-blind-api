@@ -26,7 +26,7 @@ public class CompanyController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<? extends BaseDtoResponse> getCompanyById(@RequestParam UUID id)
+    public ResponseEntity<? extends BaseDtoResponse> getCompanyById(@PathVariable("id") UUID id)
     {
         CompanyResponse getCompanyResponse = companyService.getCompany(id);
 
