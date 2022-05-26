@@ -22,15 +22,8 @@ public class MappingTests {
     @Test
     public void shouldMapCompanyToDto() throws Exception
     {
-        CompanyCategory companyCategory = new CompanyCategory();
-        Company company = new Company();
-
-        companyCategory.setId(UUID.randomUUID());
-        companyCategory.setName("CompanyCategory");
-
-        company.setId(UUID.randomUUID());
-        company.setName("Company");
-        company.setCompanyCategory(companyCategory);
+        CompanyCategory companyCategory = new CompanyCategory(UUID.randomUUID(), "CompanyCategory");
+        Company company = new Company(UUID.randomUUID(), "Company", companyCategory);
 
         CompanyResponse companyDto = companyMapper.INSTANCE.companyToDto(company);
 
