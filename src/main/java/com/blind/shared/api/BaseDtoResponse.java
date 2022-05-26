@@ -2,7 +2,7 @@ package com.blind.shared.api;
 
 import lombok.*;
 
-@Data
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class BaseDtoResponse {

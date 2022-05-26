@@ -38,15 +38,8 @@ public class CompanyControllerTests {
 
     @Test
     public void getCompany() throws Exception {
-        final CompanyCategory companyCategory = new CompanyCategory();
-        final Company company = new Company();
-
-        companyCategory.setId(UUID.randomUUID());
-        companyCategory.setName("CompanyCategory");
-
-        company.setId(UUID.randomUUID());
-        company.setName("Company");
-        company.setCompanyCategory(companyCategory);
+        final CompanyCategory companyCategory = new CompanyCategory(UUID.randomUUID(), "CompanyCategory");
+        final Company company = new Company(UUID.randomUUID(), "Company", companyCategory);
 
         final CompanyResponse companyDto = companyMapper.INSTANCE.companyToDto(company);
 
