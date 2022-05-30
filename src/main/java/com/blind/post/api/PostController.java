@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 
-@RestController("/v1/post")
+@RestController("/api/v1")
 public class PostController {
     private final PostRepository postRepository;
 
@@ -26,7 +26,7 @@ public class PostController {
             @ApiResponse(code = 404, message = "NOT_FOUND"),
             @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
     })
-    @GetMapping("/")
+    @GetMapping("/posts")
     List<Post> listAll() {
         return postRepository.findAll();
     }
@@ -36,7 +36,7 @@ public class PostController {
             @ApiResponse(code = 400, message = "BAD_REQUEST"),
             @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
     })
-    @PostMapping("/")
+    @PostMapping("/post")
     Post createPost(@RequestBody Post post) {
         postRepository.save(post);
         return post;
