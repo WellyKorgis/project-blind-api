@@ -26,7 +26,6 @@ public class SwaggerConfig {
     @Bean
     public Docket allApi() {
         return new Docket(DocumentationType.SWAGGER_2)
-//                .groupName("USER")
                 .useDefaultResponseMessages(false)
                 .select()
                 .apis(RequestHandlerSelectors.any())
