@@ -6,7 +6,6 @@ server:
   port: 8081
 
 spring:
-  # Database information
   datasource:
     url: jdbc:postgresql://localhost:5432/blind-db
     username: postgres
