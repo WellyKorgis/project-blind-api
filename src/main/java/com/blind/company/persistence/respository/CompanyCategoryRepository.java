@@ -5,8 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
-public interface CompanyCategoryRepository extends JpaRepository<CompanyCategory, Integer> {
-    Optional<CompanyCategory> findById(String id);
+public interface CompanyCategoryRepository extends JpaRepository<CompanyCategory, UUID> {
+    Optional<CompanyCategory> findById(UUID id);
 }
