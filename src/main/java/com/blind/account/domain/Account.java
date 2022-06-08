@@ -1,7 +1,5 @@
 package com.blind.account.domain;
 
-import com.blind.company.domain.JobPosition;
-import com.blind.company.domain.Company;
 import com.blind.post.domain.Bookmark;
 import com.blind.post.domain.Post;
 import com.blind.shared.domain.BaseEntity;
@@ -29,14 +27,6 @@ public class Account extends BaseEntity {
 
     @Column(nullable = false)
     private String email;
-  
-    @JoinColumn(name = "job_position_id", referencedColumnName = "id")
-    @ManyToOne
-    private JobPosition jobPosition;
-
-    @JoinColumn(name = "company_id", referencedColumnName = "id", nullable = false)
-    @ManyToOne
-    private Company company;
 
     @CreatedDate
     @Column(name = "created_at", nullable = false)

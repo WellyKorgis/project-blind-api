@@ -14,7 +14,8 @@ import javax.persistence.*;
 public class JobPosition extends BaseEntity {
     @Column(nullable = false)
     private String title;
-    @JoinColumn(name="job_category_id",referencedColumnName = "id", nullable = false)
+
+    @JoinColumn(name="job_category_id", referencedColumnName = "id", nullable = false)
     @ManyToOne
     private JobCategory jobCategory;
 }
