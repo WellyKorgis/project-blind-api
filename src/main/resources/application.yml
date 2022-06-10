@@ -1,19 +1,21 @@
-logging:
-  level:
-    com: info
-
-server:
-  port: 8081
+spring:
+  profiles:
+    group:
+      development:
+        - blind-db-dev
+        - app
+      production:
+        - blind-db-prod
+        - app
+---
 
 spring:
+  config:
+    activate:
+      on-profile: app
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
-  datasource:
-    url: jdbc:postgresql://localhost:5432/blind-db
-    username: postgres
-    password: postgres
-    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
@@ -28,3 +30,19 @@ spring:
   output:
     ansi:
       enabled: always
+logging:
+  level:
+    com: info
+---
+
+spring:
+  config:
+    activate:
+      on-profile: blind-db-dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/blind-db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+server:
+  port: 8081
