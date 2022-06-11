@@ -24,6 +24,5 @@ public class BlindApplication implements CommandLineRunner {
                 new CompanyCategory("IT")
             )
         );
-        System.out.println("data inserted");
     }
 }
