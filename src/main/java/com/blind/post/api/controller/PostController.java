@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.*;
 
 
 @RestController("/api/v1")
@@ -29,6 +29,16 @@ public class PostController {
     @GetMapping("/posts")
     List<Post> listAll() {
         return postRepository.findAll();
+    }
+
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "NOT_FOUND"),
+            @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
+    })
+    @GetMapping("/posts/{id}")
+    Optional<Post> findPost(Integer id) {
+        return postRepository.findById(id);
     }
 
     @ApiResponses({
