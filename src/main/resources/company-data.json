@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Company1",
+    "companyCategory": {
+      "name": "IT"
+    }
+  },
+  {
+    "name": "Company2",
+    "companyCategory": {
+      "name": "IT"
+    }
+  },
+  {
+    "name": "Company3",
+    "companyCategory": {
+      "name": "Accounting"
+    }
+  }
+]
