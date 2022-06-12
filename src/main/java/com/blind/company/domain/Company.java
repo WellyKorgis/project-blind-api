@@ -20,7 +20,7 @@ public class Company extends BaseEntity {
     private String name;
 
     @JoinColumn(name="company_category_id", referencedColumnName = "id", nullable = false)
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private CompanyCategory companyCategory;
 
     @Builder
