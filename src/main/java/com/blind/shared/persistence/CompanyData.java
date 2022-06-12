@@ -48,16 +48,16 @@ public class CompanyData implements CommandLineRunner {
     }
 
     private List<Company> readCompanyDataFromJson() throws IOException {
-        try (InputStream is = CompanyData.class.getResourceAsStream(filePath)) {
-            if (is == null) throw new IOException("filePath is not found");
+        try (InputStream inputStream = CompanyData.class.getResourceAsStream(filePath)) {
+            if (inputStream == null) throw new IOException("filePath inputStream not found");
 
             ObjectMapper mapper = new ObjectMapper();
 
-            List<Company> companies = mapper.readValue(is, new TypeReference<>() {
+            List<Company> companies = mapper.readValue(inputStream, new TypeReference<>() {
             });
 
             if (companies.isEmpty()) {
-                throw new IllegalArgumentException("Companies data is empty");
+                throw new IllegalArgumentException("Companies data inputStream empty");
             }
 
             logger.info("# of companies: {}", (long) companies.size());
