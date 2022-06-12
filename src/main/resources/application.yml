@@ -1,18 +1,4 @@
 spring:
-  profiles:
-    group:
-      development:
-        - blind-db-dev
-        - app
-      production:
-        - blind-db-prod
-        - app
----
-
-spring:
-  config:
-    activate:
-      on-profile: app
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
@@ -33,16 +19,3 @@ spring:
 logging:
   level:
     com: info
----
-
-spring:
-  config:
-    activate:
-      on-profile: blind-db-dev
-  datasource:
-    url: jdbc:postgresql://localhost:5432/blind-db
-    username: postgres
-    password: postgres
-    driver-class-name: org.postgresql.Driver
-server:
-  port: 8081
