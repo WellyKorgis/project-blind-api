@@ -38,6 +38,8 @@ public class CompanyData implements CommandLineRunner {
             throw new RuntimeException("Environment has not been set yet");
         }
 
+        if(companyRepository.count() > 0) return;
+
         if (Arrays.stream(environment.getActiveProfiles()).anyMatch(env -> env.equalsIgnoreCase("dev"))) {
             logger.info("Storing companies data");
 
