@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
-
-@RestController("/api/v1")
+@RestController("/api/v1/posts")
 public class PostController {
     private final PostRepository postRepository;
 
@@ -26,7 +25,7 @@ public class PostController {
             @ApiResponse(code = 404, message = "NOT_FOUND"),
             @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
     })
-    @GetMapping("/posts")
+    @GetMapping()
     List<Post> listAll() {
         return postRepository.findAll();
     }
@@ -36,7 +35,7 @@ public class PostController {
             @ApiResponse(code = 404, message = "NOT_FOUND"),
             @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
     })
-    @GetMapping("/posts/{id}")
+    @GetMapping("{id}")
     Optional<Post> findPost(Integer id) {
         return postRepository.findById(id);
     }
@@ -46,7 +45,7 @@ public class PostController {
             @ApiResponse(code = 400, message = "BAD_REQUEST"),
             @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
     })
-    @PostMapping("/post")
+    @PostMapping()
     Post createPost(@RequestBody Post post) {
         postRepository.save(post);
         return post;
