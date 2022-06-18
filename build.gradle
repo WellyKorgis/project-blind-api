@@ -18,6 +18,7 @@ dependencies {
     implementation 'org.mapstruct:mapstruct:1.4.2.Final'
     implementation 'io.springfox:springfox-swagger2:3.0.0'
     implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.3'
     compileOnly 'org.projectlombok:lombok'
     compileOnly 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
     compileOnly 'org.mapstruct:mapstruct-processor:1.4.2.Final'
@@ -33,6 +34,16 @@ dependencies {
     testImplementation 'net.bytebuddy:byte-buddy:1.12.10'
     testImplementation 'org.hamcrest:hamcrest:2.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+}
+
+ext.profile = (!project.hasProperty('profile') || !profile) ? 'dev' : profile
+
+sourceSets {
+    main {
+        resources {
+            srcDirs "src/main/resources-env/${profile}"
+        }
+    }
 }
 
 test {
