@@ -24,7 +24,7 @@ public class Post extends BaseEntity {
     @Column(nullable = false)
     private String title;
 
-    @NotBlank(message = "title cannot be blank")
+    @NotBlank(message = "content cannot be blank")
     @Column(nullable = false)
     private String content;
 
