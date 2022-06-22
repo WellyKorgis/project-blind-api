@@ -9,6 +9,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.time.OffsetDateTime;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,9 +20,11 @@ import java.util.Set;
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Post extends BaseEntity {
+    @NotBlank(message = "title cannot be blank")
     @Column(nullable = false)
     private String title;
 
+    @NotBlank(message = "content cannot be blank")
     @Column(nullable = false)
     private String content;
 
