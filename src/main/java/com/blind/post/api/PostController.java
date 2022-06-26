@@ -4,6 +4,7 @@ import com.blind.post.domain.*;
 import com.blind.post.persistence.repository.*;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.*;
@@ -47,5 +48,22 @@ public class PostController {
     Post createPost(@Valid @RequestBody Post post) {
         postRepository.save(post);
         return post;
+    }
+
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "NOT_FOUND"),
+            @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
+    })
+    public ResponseEntity<Post> updatePost(@PathVariable("id") Integer id, @RequestBody Post post) {
+        Optional<Post> postData = postRepository.findById(id);
+        if (postData.isPresent()) {
+            Post updatedPost = postData.get();
+            updatedPost.setTitle(post.getTitle());
+            updatedPost.setContent(post.getContent());
+            return new ResponseEntity<>(postRepository.save(updatedPost), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
