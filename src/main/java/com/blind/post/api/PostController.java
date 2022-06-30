@@ -3,6 +3,7 @@ package com.blind.post.api;
 import com.blind.post.domain.*;
 import com.blind.post.persistence.repository.*;
 import io.swagger.annotations.*;
+import org.springframework.http.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,5 +48,20 @@ public class PostController {
     Post createPost(@Valid @RequestBody Post post) {
         postRepository.save(post);
         return post;
+    }
+
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 400, message = "BAD_REQUEST"),
+            @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
+    })
+    @GetMapping("/{id}")
+    ResponseEntity<String> deletePost(@PathVariable  Integer id) {
+        try {
+            postRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
