@@ -28,6 +28,9 @@ public class Account extends BaseEntity {
     @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
+    private String password;
+
     @CreatedDate
     @Column(name = "created_at", nullable = false)
     private OffsetDateTime createAt;
