@@ -65,14 +65,16 @@ public class PostController {
             return new ResponseEntity<>(postRepository.save(updatedPost), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            
+        }
+    }
+    
     @ApiResponses({
             @ApiResponse(code = 200, message = "OK"),
             @ApiResponse(code = 400, message = "BAD_REQUEST"),
             @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
     })
     @GetMapping("/{id}")
-    ResponseEntity<String> deletePost(@PathVariable  Integer id) {
+    ResponseEntity<String> deletePost (@PathVariable Integer id) {
         try {
             postRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
