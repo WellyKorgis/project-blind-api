@@ -2,8 +2,6 @@ package com.blind.account.api;
 
 import com.blind.account.domain.Account;
 import com.blind.account.persistence.repository.AccountRepository;
-import com.blind.post.domain.Post;
-import com.blind.post.persistence.repository.PostRepository;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
