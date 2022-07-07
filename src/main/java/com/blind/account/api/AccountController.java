@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+@RestController("/api/v1/accounts")
 public class AccountController {
     private final AccountRepository accountRepository;
 
