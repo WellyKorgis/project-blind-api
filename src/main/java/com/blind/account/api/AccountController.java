@@ -38,4 +38,21 @@ public class AccountController {
                     , HttpStatus.NO_CONTENT);
         }
     }
+
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 204, message = "NO_CONTENT"),
+            @ApiResponse(code = 404, message = "NOT_FOUND"),
+            @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
+    })
+    @GetMapping()
+    ResponseEntity<String> getAccountByEmail(@PathVariable String email) {
+        Optional<Account> foundAccount = accountRepository.findByEmail(email);
+        if (foundAccount.isPresent()) {
+            return new ResponseEntity<>(foundAccount.toString(), HttpStatus.ACCEPTED);
+        } else {
+            return new ResponseEntity<>("No accounts with the email '"+ email +"' has been found."
+                    , HttpStatus.NO_CONTENT);
+        }
+    }
 }
