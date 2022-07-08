@@ -31,8 +31,7 @@ public class AccountController {
 
     @ApiResponses({
             @ApiResponse(code = 200, message = "OK"),
-            @ApiResponse(code = 204, message = "NO_CONTENT"),
-            @ApiResponse(code = 404, message = "NOT_FOUND"),
+            @ApiResponse(code = 400, message = "BAD_REQUEST"),
             @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
     })
     @GetMapping()
