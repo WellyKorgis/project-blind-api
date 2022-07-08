@@ -2,6 +2,7 @@ package com.blind.account.api;
 
 import com.blind.account.domain.Account;
 import com.blind.account.persistence.repository.AccountRepository;
+import com.blind.post.domain.Post;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +36,7 @@ public class AccountController {
             @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
     })
     @GetMapping()
-    ResponseEntity<String> addAccount(@Valid @RequestBody Account accountToAdd) {
+    Account addAccount(@Valid @RequestBody Account accountToAdd) {
         return accountRepository.save(accountToAdd);
     }
 
