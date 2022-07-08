@@ -55,4 +55,20 @@ public class AccountController {
                     , HttpStatus.NO_CONTENT);
         }
     }
+    
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 204, message = "NO_CONTENT"),
+            @ApiResponse(code = 404, message = "NOT_FOUND"),
+            @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
+    })
+    @GetMapping()
+    ResponseEntity<String> getAccountByUsername(@PathVariable String username) {
+        Optional<Account> foundAccount = accountRepository.findByUsername(username);
+        if (foundAccount.isPresent()) {
+            return new ResponseEntity<>(foundAccount.toString(), HttpStatus.ACCEPTED);
+        } else {
+            return new ResponseEntity<>("No accounts with the username '"+ username +"' has been found.", HttpStatus.NO_CONTENT);
+        }
+    }
 }
