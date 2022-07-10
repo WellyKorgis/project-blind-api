@@ -10,6 +10,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.awt.print.Book;
 import java.time.OffsetDateTime;
 import java.util.HashSet;
@@ -23,12 +24,15 @@ import java.util.Set;
 @EntityListeners(AuditingEntityListener.class)
 public class Account extends BaseEntity {
     @Column(nullable = false)
+    @NotEmpty(message = "Please provide a username")
     private String username;
 
     @Column(nullable = false)
+    @NotEmpty(message = "Please provide an email address")
     private String email;
 
     @Column(nullable = false)
+    @NotEmpty(message = "Please provide a password")
     private String password;
 
     @CreatedDate
