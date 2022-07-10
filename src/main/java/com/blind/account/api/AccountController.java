@@ -9,9 +9,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
 import java.util.Optional;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 @RestController("/api/v1/accounts")
 public class AccountController {
@@ -69,6 +69,21 @@ public class AccountController {
             return new ResponseEntity<>(foundAccount.toString(), HttpStatus.ACCEPTED);
         } else {
             return new ResponseEntity<>("No accounts with the username '"+ username +"' has been found.", HttpStatus.NO_CONTENT);
+            
+    @ApiResponses({
+        @ApiResponse(code = 200, message = "OK"),
+        @ApiResponse(code = 204, message = "NO_CONTENT"),
+        @ApiResponse(code = 404, message = "NOT_FOUND"),
+        @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
+    })        
+    ResponseEntity<String> listAllAccounts() {
+
+        List<Account> accountList = accountRepository.findAll();
+        if (accountList == null) {
+            return new ResponseEntity<>("No accounts exist to show", HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(accountList.toString(), HttpStatus.ACCEPTED);
+
         }
     }
 }
