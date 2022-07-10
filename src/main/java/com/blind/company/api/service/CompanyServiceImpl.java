@@ -6,6 +6,8 @@ import com.blind.company.domain.Company;
 import com.blind.company.persistence.respository.CompanyRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -32,5 +34,10 @@ public class CompanyServiceImpl implements CompanyService {
         if (company == null) return null;
 
         return companyMapper.companyToDto(company);
+    }
+
+    @Override
+    public Page<CompanyResponse> getCompanyList(Pageable pageable) {
+        return companyRepository.findAll(pageable).map(companyMapper::companyToDto);
     }
 }

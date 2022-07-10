@@ -5,6 +5,8 @@ import com.blind.company.api.service.CompanyService;
 import com.blind.shared.api.BaseDtoResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +16,8 @@ import java.util.UUID;
 @Slf4j
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/company")
+@RequestMapping("/companies")
 public class CompanyController {
-
     private final CompanyService companyService;
 
     @Autowired
@@ -32,5 +33,13 @@ public class CompanyController {
 
         if(getCompanyResponse != null) return ResponseEntity.status(HttpStatus.OK).body(getCompanyResponse);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(BaseDtoResponse.of(HttpStatus.NO_CONTENT.value(), "Couldn't retrieve company information"));
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getCompanyList(Pageable pageable)
+    {
+        Page<CompanyResponse> getCompanyList = companyService.getCompanyList(pageable);
+
+        return ResponseEntity.status(HttpStatus.OK).body(getCompanyList);
     }
 }
