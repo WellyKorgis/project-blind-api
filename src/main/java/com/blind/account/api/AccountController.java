@@ -90,6 +90,8 @@ public class AccountController {
             return new ResponseEntity<>(foundAccount.toString(), HttpStatus.ACCEPTED);
         } else {
             return new ResponseEntity<>("No accounts with the username '"+ username +"' has been found.", HttpStatus.NO_CONTENT);
+        }
+    }
             
     @ApiResponses({
         @ApiResponse(code = 200, message = "OK"),
