@@ -9,7 +9,7 @@ import java.time.OffsetDateTime;
 
 @Getter
 @Setter
-public class getPostDto {
+public class PostResponse {
     @JsonProperty("title")
     private String title;
 
