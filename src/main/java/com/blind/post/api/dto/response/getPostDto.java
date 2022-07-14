@@ -1,4 +1,4 @@
-package com.blind.post.dto.response;
+package com.blind.post.api.dto.response;
 
 import com.blind.account.domain.Account;
 import com.fasterxml.jackson.annotation.JsonProperty;
