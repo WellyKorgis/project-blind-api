@@ -1,6 +1,8 @@
 package com.blind.company.api.controller;
 
-import com.blind.company.api.dto.response.CompanyResponse;
+import com.blind.company.api.dto.request.CreateCompanyRequest;
+import com.blind.company.api.dto.response.CreateCompanyResponse;
+import com.blind.company.api.dto.shared.CompanyDto;
 import com.blind.company.api.service.CompanyService;
 import com.blind.shared.api.BaseDtoResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +31,7 @@ public class CompanyController {
     @GetMapping("/{id}")
     public ResponseEntity<? extends BaseDtoResponse> getCompanyById(@PathVariable("id") UUID id)
     {
-        CompanyResponse getCompanyResponse = companyService.getCompany(id);
+        CompanyDto getCompanyResponse = companyService.getCompany(id);
 
         if(getCompanyResponse != null) return ResponseEntity.status(HttpStatus.OK).body(getCompanyResponse);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(BaseDtoResponse.of(HttpStatus.NO_CONTENT.value(), "Couldn't retrieve company information"));
@@ -38,8 +40,16 @@ public class CompanyController {
     @GetMapping
     public ResponseEntity<?> getCompanyList(Pageable pageable)
     {
-        Page<CompanyResponse> getCompanyList = companyService.getCompanyList(pageable);
+        Page<CompanyDto> getCompanyList = companyService.getCompanyList(pageable);
 
         return ResponseEntity.status(HttpStatus.OK).body(getCompanyList);
+    }
+
+    public ResponseEntity<? extends BaseDtoResponse> create(CreateCompanyRequest request)
+    {
+        CreateCompanyResponse response = companyService.createCompany(request);
+
+        if(response != null) return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(BaseDtoResponse.of(HttpStatus.BAD_REQUEST.value(), "Couldn't create a company"));
     }
 }
