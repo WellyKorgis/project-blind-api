@@ -1,4 +1,4 @@
-package com.blind.company.api.dto.response;
+package com.blind.company.api.dto.shared;
 
 import com.blind.shared.api.BaseDtoResponse;
 import lombok.*;
@@ -9,7 +9,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CompanyCategoryResponse extends BaseDtoResponse {
+public class CompanyDto extends BaseDtoResponse {
     private UUID id;
     private String name;
+    private CompanyCategoryDto companyCategory;
 }
