@@ -13,9 +13,9 @@ public class PostResponse {
     @JsonProperty("title")
     private String title;
 
-    @JsonProperty("createdAt")
-    private OffsetDateTime createAt;
+    @JsonProperty("created_at")
+    private OffsetDateTime createdAt;
 
-    @JsonProperty("createdBy")
+    @JsonProperty("created_by")
     private Account account;
 }
