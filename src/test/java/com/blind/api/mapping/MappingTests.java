@@ -54,7 +54,7 @@ public class MappingTests {
         Post post = new Post();
         post.setTitle("hi");
         post.setContent("asdfasdf");
-        post.setCreateAt(time);
+        post.setCreatedAt(time);
 
         PostResponse expected = new PostResponse();
         expected.setTitle("hi");
