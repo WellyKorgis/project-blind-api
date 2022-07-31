@@ -36,7 +36,7 @@ public class PostController {
             @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
     })
     @GetMapping("{id}")
-    Optional<Post> findPost(Integer id) {
+    Optional<Post> findPost(UUID id) {
         return postRepository.findById(id);
     }
 
@@ -56,7 +56,7 @@ public class PostController {
             @ApiResponse(code = 404, message = "NOT_FOUND"),
             @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
     })
-    public ResponseEntity<Post> updatePost(@PathVariable("id") Integer id, @RequestBody Post post) {
+    public ResponseEntity<Post> updatePost(@PathVariable("id") UUID id, @RequestBody Post post) {
         Optional<Post> postData = postRepository.findById(id);
         if (postData.isPresent()) {
             Post updatedPost = postData.get();
@@ -74,7 +74,7 @@ public class PostController {
             @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
     })
     @GetMapping("/{id}")
-    ResponseEntity<String> deletePost (@PathVariable Integer id) {
+    ResponseEntity<String> deletePost (@PathVariable UUID id) {
         try {
             postRepository.deleteById(id);
             return new ResponseEntity<>(HttpStatus.OK);
