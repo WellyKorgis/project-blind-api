@@ -34,8 +34,8 @@ public class PostController {
     @GetMapping()
     ResponseEntity<?> listAll(Pageable pageable) {
         Page<PostResponse> postList = postService.getPostList(pageable);
-        if (postList.isEmpty()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Couldn't find any posts");
-        return ResponseEntity.status(HttpStatus.OK).body(postList);
+        if (!postList.isEmpty()) return ResponseEntity.status(HttpStatus.OK).body(postList);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Couldn't find any posts");
     }
 
     @ApiResponses({
