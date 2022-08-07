@@ -4,11 +4,9 @@ import com.blind.post.api.dto.response.*;
 import com.blind.post.api.service.*;
 import com.blind.post.domain.*;
 import com.blind.post.persistence.repository.*;
-import com.blind.shared.api.*;
 import io.swagger.annotations.*;
-import org.springframework.data.domain.*;
-import org.springframework.http.*;
 import org.springframework.beans.factory.annotation.*;
+import org.springframework.data.domain.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
