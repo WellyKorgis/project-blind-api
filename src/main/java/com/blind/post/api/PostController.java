@@ -1,8 +1,11 @@
 package com.blind.post.api;
 
+import com.blind.post.api.dto.response.*;
+import com.blind.post.api.service.*;
 import com.blind.post.domain.*;
 import com.blind.post.persistence.repository.*;
 import io.swagger.annotations.*;
+import org.springframework.data.domain.*;
 import org.springframework.http.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
@@ -16,6 +19,9 @@ public class PostController {
     private final PostRepository postRepository;
 
     @Autowired
+    private PostService postService;
+
+    @Autowired
     public PostController(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
@@ -26,8 +32,10 @@ public class PostController {
             @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
     })
     @GetMapping()
-    List<Post> listAll() {
-        return postRepository.findAll();
+    ResponseEntity<?> listAll(Pageable pageable) {
+        Page<PostResponse> postList = postService.getPostList(pageable);
+        if (postList.isEmpty()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Couldn't find any posts");
+        return ResponseEntity.status(HttpStatus.OK).body(postList);
     }
 
     @ApiResponses({
