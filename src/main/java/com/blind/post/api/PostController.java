@@ -4,6 +4,7 @@ import com.blind.post.api.dto.response.*;
 import com.blind.post.api.service.*;
 import com.blind.post.domain.*;
 import com.blind.post.persistence.repository.*;
+import com.blind.shared.api.*;
 import io.swagger.annotations.*;
 import org.springframework.data.domain.*;
 import org.springframework.http.*;
@@ -43,9 +44,11 @@ public class PostController {
             @ApiResponse(code = 404, message = "NOT_FOUND"),
             @ApiResponse(code = 500, message = "INTERNAL_SERVER_ERROR"),
     })
-    @GetMapping("{id}")
-    Optional<Post> findPost(UUID id) {
-        return postRepository.findById(id);
+    @GetMapping("/{id}")
+    ResponseEntity<?> findPost(@PathVariable UUID id) {
+        PostResponse postResponse = postService.getPost(id);
+        if (postResponse != null) return ResponseEntity.status(HttpStatus.OK).body(postResponse);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Couldn't find any posts with the id " + id);
     }
 
     @ApiResponses({
