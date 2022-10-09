@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.*;
 import java.util.*;
 
-@RestController("/api/v1/posts")
+@RestController
+@CrossOrigin("*")
+@RequestMapping("/api/v1/posts")
 public class PostController {
     private final PostRepository postRepository;
 
