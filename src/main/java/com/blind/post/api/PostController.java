@@ -17,14 +17,11 @@ import java.util.*;
 @CrossOrigin("*")
 @RequestMapping("/api/v1/posts")
 public class PostController {
-    private final PostRepository postRepository;
+    private final PostService postService;
 
     @Autowired
-    private PostService postService;
-
-    @Autowired
-    public PostController(PostRepository postRepository) {
-        this.postRepository = postRepository;
+    public PostController(PostService postService) {
+        this.postService = postService;
     }
 
     @ApiResponses({
