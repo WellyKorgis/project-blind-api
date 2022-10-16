@@ -1,11 +1,15 @@
 package com.blind.api.controller;
 
 import com.blind.company.api.controller.CompanyController;
-import com.blind.company.api.dto.response.CompanyResponse;
+import com.blind.company.api.dto.request.CreateCompanyRequest;
+import com.blind.company.api.dto.response.CreateCompanyResponse;
+import com.blind.company.api.dto.shared.CompanyCategoryDto;
+import com.blind.company.api.dto.shared.CompanyDto;
 import com.blind.company.api.mapper.CompanyMapper;
 import com.blind.company.api.service.CompanyService;
 import com.blind.company.domain.Company;
 import com.blind.company.domain.CompanyCategory;
+import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -17,6 +21,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -24,9 +29,11 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.hamcrest.Matchers.is;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -47,7 +54,7 @@ public class CompanyControllerTests {
         final CompanyCategory companyCategory = new CompanyCategory(UUID.randomUUID(), "CompanyCategory");
         final Company company = new Company(UUID.randomUUID(), "Company", companyCategory);
 
-        final CompanyResponse companyDto = companyMapper.INSTANCE.companyToDto(company);
+        final CompanyDto companyDto = companyMapper.INSTANCE.companyToDto(company);
 
         given(companyService.getCompany(company.getId())).willReturn(companyDto);
 
@@ -69,10 +76,10 @@ public class CompanyControllerTests {
         companyList.add(new Company(UUID.randomUUID(), "Company2", companyCategory));
         companyList.add(new Company(UUID.randomUUID(), "Company3", companyCategory));
 
-        final List<CompanyResponse> companyResponses = companyMapper.INSTANCE.companyListToDto(companyList);
+        final List<CompanyDto> companyResponses = companyMapper.INSTANCE.companyListToDto(companyList);
 
         Pageable pageable = PageRequest.of(0, 20);
-        Page<CompanyResponse> pagedResponses = new PageImpl<>(companyResponses);
+        Page<CompanyDto> pagedResponses = new PageImpl<>(companyResponses);
 
         given(companyService.getCompanyList(pageable)).willReturn(pagedResponses);
 
@@ -83,5 +90,26 @@ public class CompanyControllerTests {
                 .andExpect(status().isOk());
 
         verify(companyService).getCompanyList(pageable);
+    }
+
+    @Test
+    public void createCompany() throws Exception {
+        final CompanyCategoryDto companyCategory = new CompanyCategoryDto(UUID.randomUUID(), "CompanyCategory");
+        final CompanyDto company = new CompanyDto(UUID.randomUUID(), "Company", companyCategory);
+
+        final CreateCompanyRequest request = new CreateCompanyRequest(company.getId().toString(), company.getName(), company.getCompanyCategory());
+
+        final CreateCompanyResponse response = new CreateCompanyResponse(request.getId());
+
+        var requestBody = new Gson().toJson(request);
+
+        given(companyService.createCompany(any(CreateCompanyRequest.class))).willReturn(response);
+
+        this.mockMvc.perform(post("/companies")
+                        .content(requestBody)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id", is(request.getId())));
     }
 }

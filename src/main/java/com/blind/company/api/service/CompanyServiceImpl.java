@@ -49,6 +49,8 @@ public class CompanyServiceImpl implements CompanyService {
 
         if(mappedCompany == null) return null;
 
-        return companyRepository.saveCompany(mappedCompany);
+        Company savedCompany = companyRepository.save(mappedCompany);
+
+        return companyMapper.companyToCreateCompanyResponse(savedCompany);
     }
 }

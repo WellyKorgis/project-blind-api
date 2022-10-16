@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,7 +46,8 @@ public class CompanyController {
         return ResponseEntity.status(HttpStatus.OK).body(getCompanyList);
     }
 
-    public ResponseEntity<? extends BaseDtoResponse> create(CreateCompanyRequest request)
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<? extends BaseDtoResponse> create(@RequestBody CreateCompanyRequest request)
     {
         CreateCompanyResponse response = companyService.createCompany(request);
 
