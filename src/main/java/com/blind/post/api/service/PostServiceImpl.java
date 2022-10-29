@@ -15,10 +15,9 @@ import java.util.UUID;
 @Slf4j
 @Service
 public class PostServiceImpl implements PostService {
-    private PostRepository postRepository;
-    private PostMapper postMapper;
+    private final PostRepository postRepository;
+    private final PostMapper postMapper;
 
-    @Autowired
     public PostServiceImpl(PostRepository postRepository, PostMapper postMapper)
     {
         this.postRepository = postRepository;
