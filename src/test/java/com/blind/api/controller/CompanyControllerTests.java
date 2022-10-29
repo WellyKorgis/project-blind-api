@@ -100,36 +100,4 @@ public class CompanyControllerTests {
 
         verify(companyService).getCompanyList(pageable);
     }
-
-    @Test
-    public void getPostList() throws Exception {
-
-        final Account account = new Account("username", "email@mail.com");
-        Post post1 = new Post("title1", "content", account);
-        Post post2 = new Post("title2", "content", account);
-        Post post3 = new Post("title3", "content", account);
-
-        final List<Post> postList = new ArrayList<>();
-
-        postList.add(post1);
-        postList.add(post2);
-        postList.add(post3);
-
-        final List<PostResponse> postResponse = postMapper.postListToDto(postList);
-
-        Pageable pageable = PageRequest.of(0, 20);
-        Page<PostResponse> pagedResponses = new PageImpl<>(postResponse);
-
-        when(postService.getPostList(pageable)).thenReturn(pagedResponses);
-
-        this.mockMvc.perform(get("/api/v1/posts"))
-        //        .andExpect(status().isOk())
-        ;
-
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/posts")
-                .accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
-        String content = mvcResult.getResponse().getContentAsString();
-
-        //verify(postService).getPostList(pageable);
-    }
 }
