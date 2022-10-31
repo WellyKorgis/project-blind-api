@@ -1,6 +1,8 @@
 package com.blind.company.api.service;
 
-import com.blind.company.api.dto.response.CompanyResponse;
+import com.blind.company.api.dto.request.CreateCompanyRequest;
+import com.blind.company.api.dto.response.CreateCompanyResponse;
+import com.blind.company.api.dto.shared.CompanyDto;
 import com.blind.company.api.mapper.CompanyMapper;
 import com.blind.company.domain.Company;
 import com.blind.company.persistence.respository.CompanyRepository;
@@ -27,7 +29,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public CompanyResponse getCompany(UUID id) {
+    public CompanyDto getCompany(UUID id) {
 
         Company company = companyRepository.findById(id).orElse(null);
 
@@ -37,7 +39,18 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public Page<CompanyResponse> getCompanyList(Pageable pageable) {
+    public Page<CompanyDto> getCompanyList(Pageable pageable) {
         return companyRepository.findAll(pageable).map(companyMapper::companyToDto);
+    }
+
+    @Override
+    public CreateCompanyResponse createCompany(CreateCompanyRequest request) {
+        Company mappedCompany = companyMapper.dtoToCompany(request);
+
+        if(mappedCompany == null) return null;
+
+        Company savedCompany = companyRepository.save(mappedCompany);
+
+        return companyMapper.companyToCreateCompanyResponse(savedCompany);
     }
 }
