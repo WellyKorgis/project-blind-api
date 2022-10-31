@@ -9,7 +9,10 @@ import com.blind.company.api.mapper.CompanyMapper;
 import com.blind.company.api.service.CompanyService;
 import com.blind.company.domain.Company;
 import com.blind.company.domain.CompanyCategory;
+import com.blind.post.api.mapper.PostMapper;
+import com.blind.post.api.service.PostService;
 import com.google.gson.Gson;
+import lombok.extern.log4j.Log4j;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -37,6 +40,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@Log4j
 @WebMvcTest(controllers = CompanyController.class)
 @ExtendWith(MockitoExtension.class)
 public class CompanyControllerTests {
@@ -48,6 +52,12 @@ public class CompanyControllerTests {
 
     @Mock
     private CompanyMapper companyMapper;
+
+    @Mock
+    private PostService postService;
+
+    @Mock
+    private PostMapper postMapper;
 
     @Test
     public void getCompany() throws Exception {

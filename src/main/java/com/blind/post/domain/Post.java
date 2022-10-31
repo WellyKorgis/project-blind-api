@@ -30,7 +30,7 @@ public class Post extends BaseEntity {
 
     @CreatedDate
     @Column(name = "created_at", nullable = false)
-    private OffsetDateTime createAt;
+    private OffsetDateTime createdAt;
 
     @JoinColumn(nullable = false)
     @ManyToOne
